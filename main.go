@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"./internals"
+	"./internal"
 )
 
 func main() {
@@ -34,10 +34,10 @@ func main() {
 	switch os.Args[1] {
 	case "publish":
 		publishCommand.Parse(os.Args[2:])
-		internals.Publish(projectID, *publishTopic, *publishMsg)
+		internal.Publish(projectID, *publishTopic, *publishMsg)
 	case "subscribe":
 		subCommand.Parse(os.Args[2:])
-		internals.Subscribe(projectID, *subID)
+		internal.Subscribe(projectID, *subID)
 		time.Sleep(time.Duration(3) * time.Minute)
 	default:
 		_ = fmt.Errorf("expected 'publish' or 'subscribe' subcommands")
